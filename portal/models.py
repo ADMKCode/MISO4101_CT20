@@ -15,12 +15,18 @@ class Lugar(models.Model):
 
 
 class Deportista(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, primary_key=True, verbose_name='Usuario')
+    user = models.OneToOneField(to=User,
+                                on_delete=models.CASCADE,
+                                primary_key=True,
+                                verbose_name='Usuario')
     fecha_nacimiento = models.DateField(verbose_name='Fecha de Nacimiento')
-    peso = models.FloatField(validators=[MinValueValidator(0.0)], help_text='Peso del Deportista')
-    estatura = models.FloatField(validators=[MinValueValidator(0.0)], help_text='Estatura del Deportista')
-    entrenador = models.CharField(max_length=128, help_text='Entrenador del Deportista')
-    imagen = models.URLField(verbose_name='Foto', help_text='URL Foto de Perfil')
+    peso = models.FloatField(validators=[MinValueValidator(0.0)],
+                             help_text='Peso del Deportista')
+    estatura = models.FloatField(validators=[MinValueValidator(0.0)],
+                                 help_text='Estatura del Deportista')
+    entrenador = models.CharField(max_length=128,
+                                  help_text='Entrenador del Deportista')
+    imagen = models.ImageField('Uploaded image')
     lugar_nacimiento = models.ForeignKey(to=Lugar, on_delete=models.CASCADE)
 
     class Meta:
@@ -31,7 +37,10 @@ class Deportista(models.Model):
 
 
 class UsuarioRegistrado(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, primary_key=True, verbose_name='Usuario')
+    user = models.OneToOneField(to=User,
+                                on_delete=models.CASCADE,
+                                primary_key=True,
+                                verbose_name='Usuario')
     email = models.EmailField(help_text='Correo electrónico del Usuario')
 
     class Meta:
@@ -71,7 +80,8 @@ class Participacion(models.Model):
 
 class Video(models.Model):
     url = models.URLField(verbose_name="Video", help_text="URL del video")
-    participacion = models.OneToOneField(Participacion, on_delete=models.CASCADE)
+    participacion = models.OneToOneField(Participacion,
+                                         on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Videos"
@@ -82,7 +92,8 @@ class Video(models.Model):
 
 class Comentario(models.Model):
     texto = models.CharField(max_length=1000)
-    usuario_registrado = models.ForeignKey(UsuarioRegistrado, on_delete=models.CASCADE)
+    usuario_registrado = models.ForeignKey(UsuarioRegistrado,
+                                           on_delete=models.CASCADE)
     fecha = models.DateTimeField(null=False)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
 
