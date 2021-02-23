@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from portal import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/', include('portal.urls')),
+    path('calendario/', views.calendario_list),
+    path('calendario/<int:pk>', views.calendar_detail),
+    path('deportistas/', views.deportista_list),
+    path('deportistas/<int:pk>', views.deportist_detail),
 ]
