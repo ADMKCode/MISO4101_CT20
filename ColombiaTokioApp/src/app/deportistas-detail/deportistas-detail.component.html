@@ -1,0 +1,12 @@
+<div *ngIf="deportista">
+  <img src="{{deportista.imagen}}" width="40%" height="40%" /> 
+    <h2>{{deportista.user | uppercase}}</h2> 
+    <div>
+    <label>Nombre del deportista
+      <input [(ngModel)]="deporista.user" placeholder="User">
+    </label>
+    </div>
+</div>
+
+<button (click)="goBack()">go back</button>
+

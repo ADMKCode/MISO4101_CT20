@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportistas</title>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .header {
+      padding: 1px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+        grid-gap: 2em;
+    }
+    
+    .card {
+        box-shadow: 0 8px 24px 0 rgb(0 0 0 / 10%);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .card img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    body {
+       margin: 0;
+    }
+    
+    .card .details {
+        display: flex;
+        flex-direction: column;
+        margin: 6px 12px;
+    }
+    
+    span {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    span.higher {
+        font-size: 2em;
+    }
+</style>
+
+<body>
+    <div class="header">
+      <h1>Listado de deportistas</h1>
+    </div>
+    <div class="cards">
+
+        {% regroup object by deportista as deportista_list %}
+        {% for deportista in deportista_list %}
+            <div class="card">
+                <img src="{{deportista.grouper.imagen}}" alt="Foto">
+                <div class="details">
+                    <span class="higher">{{ deportista.grouper }}</span>
+                    <span>
+                        {% for participacion in deportista.list %}
+                            {{ participacion.deporte.icono }}
+                        {% endfor %}
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

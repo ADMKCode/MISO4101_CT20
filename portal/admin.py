@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from .models import Deportista, UsuarioRegistrado, Deporte, Participacion, Lugar, Video, Comentario
+from .models import Deportista, Deporte, Participacion, Lugar, Video, Comentario
 
 
 # Register your models here.
@@ -19,14 +19,14 @@ class DeportistaAdmin(admin.ModelAdmin):
     get_lugar_nacimiento.short_description = 'Lugar de Nacimiento'
 
 
-@admin.register(UsuarioRegistrado)
-class UsuarioRegistradoAdmin(admin.ModelAdmin):
-    list_display = ('get_name', 'email')
+#@admin.register(User)
+#class UsuarioRegistradoAdmin(admin.ModelAdmin):
+#    list_display = ('get_name', 'email')
 
-    def get_name(self, obj):
-        return f'{obj.user.first_name} {obj.user.last_name}'
+#    def get_name(self, obj):
+#        return f'{obj.user.first_name} {obj.user.last_name}'
 
-    get_name.short_description = 'Nombre'
+#    get_name.short_description = 'Nombre'
 
 
 @admin.register(Deporte)

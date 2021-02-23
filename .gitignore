@@ -122,3 +122,4 @@ dmypy.json
 .pyre/
 .vscode/
 .idea
+env.*
